@@ -1,0 +1,85 @@
+{
+  "protocol_version": "0.1",
+  "skill": {
+    "id": "hermes-skill-excalidraw",
+    "display_name": "Excalidraw",
+    "description": "Create hand-drawn Excalidraw JSON diagrams for architecture, flows, and sequences."
+  },
+  "task_profile": {
+    "category": "creative",
+    "architecture": "canvas",
+    "artifact": "canvas",
+    "inputs": [
+      "Architecture or flow brief",
+      "Shape vocabulary"
+    ],
+    "outputs": [
+      "Editable JSON diagram",
+      "System boundary",
+      "Service box",
+      "Event arrow",
+      "Annotation"
+    ]
+  },
+  "modules": {
+    "memory": {
+      "strategy": "artifact_revision_history",
+      "responsibility": "Retain architecture or flow brief plus decisions, observations, and verification evidence needed to resume safely."
+    },
+    "planning": {
+      "strategy": "iterative_composition_plan",
+      "responsibility": "Transform shape vocabulary into the ordered, bounded stages defined by this skill."
+    },
+    "action": {
+      "strategy": "brief_generate_render_inspect_export",
+      "responsibility": "Advance the workflow through excalidraw scene graph while preserving stop conditions and user authority."
+    },
+    "capability": {
+      "strategy": "task_conditioned_minimum_capability_set",
+      "responsibility": "Expose only the production and rendering capabilities needed for the requested artifact and format."
+    }
+  },
+  "execution": {
+    "stages": [
+      "Identify actors systems and relationships",
+      "Choose frames shapes and visual grouping",
+      "Place elements on a hand-drawn canvas",
+      "Connect flows with labeled arrows",
+      "Check overlap hierarchy and reading order",
+      "Export valid editable Excalidraw JSON"
+    ],
+    "gates": [
+      "scope_and_authority_confirmed",
+      "capability_and_dependency_preflight",
+      "consequential_action_previewed_when_applicable",
+      "output_reopened_and_verified"
+    ]
+  },
+  "verification": {
+    "evidence": [
+      "System boundary",
+      "Service box",
+      "Event arrow",
+      "Annotation"
+    ],
+    "metrics": [
+      "task_success",
+      "verification_pass_rate",
+      "tool_error_rate",
+      "repair_count",
+      "latency_ms",
+      "estimated_cost_usd"
+    ]
+  },
+  "failure_policy": {
+    "max_repairs": 2,
+    "schema_error": "repair_then_stop",
+    "permission_error": "stop_without_retry",
+    "verification_failure": "report_incomplete"
+  },
+  "maturity": {
+    "level": "executable_contract",
+    "runtime_scope": "validation_and_dry_run_planning",
+    "claim_boundary": "This repository validates and plans the harness contract; it does not claim live service execution or benchmark gains without a connected adapter and measured evidence."
+  }
+}
